@@ -96,6 +96,7 @@ solve_and_print(Solution) :-
 % template and example examples
 
 template :-
+  % Just a white, empty square
   solve_and_print([
     [w/_,w/_,w/_,w/_,w/_,w/_,w/_,w/_,w/_],
     [w/_,w/_,w/_,w/_,w/_,w/_,w/_,w/_,w/_],
@@ -108,6 +109,7 @@ template :-
     [w/_,w/_,w/_,w/_,w/_,w/_,w/_,w/_,w/_]]).
 
 example :-
+  % Based on the template with some black fields (b/*) and some pre-defined digits in the white fields
   solve_and_print([
     [b/6,b/0,w/_,w/_,b/0,b/0,w/_,w/_,b/0],
     [w/_,w/_,w/1,w/_,b/0,w/_,w/9,w/_,b/5],
