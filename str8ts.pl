@@ -28,22 +28,22 @@ gridcontent(Rows, Cols, Vars) :-
   % quadratic form: N rows, each N cells
   length(Rows, N), maplist(llength(N), Rows),
   transpose(Rows, Cols),
-  maplist(all_digits_are_different, Rows, RowDigits),
-  maplist(all_digits_are_different, Cols, _ColDigits),
+  maplist(all_digits_are_different(N), Rows, RowDigits),
+  maplist(all_digits_are_different(N), Cols, _ColDigits),
   append(RowDigits, Vars).
 
 % Extract all variables and
 % example:
 %    input: [w/A,b/0,b/B,w/C]
 %   output: [A,B,C]
-all_digits_are_different(Line, NLine) :-
+all_digits_are_different(N, Line, NLine) :-
   include(non_null, Line, ALine),
   maplist(get_digit, ALine, NLine),
-  maplist(is_fddigit, NLine),
+  maplist(is_fddigit(N), NLine),
   all_distinct(NLine).
 
 non_null(X) :- X \== b/0.
-is_fddigit(X) :- X #> 0, X #< 10.
+is_fddigit(N, X) :- X #> 0, X #=< N.
 get_digit(_/N,N).
 llength(N,List) :- length(List, N).
 
